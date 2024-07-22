@@ -22,4 +22,13 @@ public class TicTacToe {
     }
     return builder.toString();
   }
+
+  public void processInput(Player player, int inputUser) {
+    var row = (inputUser - 1) / 3;
+    var column = (inputUser - 1) % 3;
+
+    if (grid[row][column] == '.') {
+      grid[row][column] = player == Player.FIRST ? 'X' : 'O';
+    }
+  }
 }
