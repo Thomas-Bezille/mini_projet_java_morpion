@@ -15,7 +15,7 @@ public class TicTacToe {
   @Override
   public String toString() {
     final var builder = new StringBuilder();
-    builder.append("Grille du morpion : ").append(LINE_SEPARATOR);
+    builder.append("Grille du morpion (exit ou quit pour quitter le jeu) : ").append(LINE_SEPARATOR);
     for (char[] lines : grid) {
       for (char cell : lines) {
         builder.append(SPACE).append(cell).append(SPACE);
