@@ -3,6 +3,8 @@ package com.dyma.game;
 import static com.dyma.game.StringConstants.LINE_SEPARATOR;
 import static com.dyma.game.StringConstants.SPACE;
 
+import com.dyma.exceptions.TicTacToeInvalidInputException;
+
 public class TicTacToe {
   private char [][] grid = new char[][] {
     {'.', '.', '.'},
@@ -13,7 +15,7 @@ public class TicTacToe {
   @Override
   public String toString() {
     final var builder = new StringBuilder();
-    builder.append("Grille du morpion : ").append(LINE_SEPARATOR);
+    builder.append("Grille du morpion (exit ou quit pour quitter le jeu) : ").append(LINE_SEPARATOR);
     for (char[] lines : grid) {
       for (char cell : lines) {
         builder.append(SPACE).append(cell).append(SPACE);
@@ -23,12 +25,14 @@ public class TicTacToe {
     return builder.toString();
   }
 
-  public void processInput(Player player, int inputUser) {
+  public void processInput(Player player, int inputUser) throws TicTacToeInvalidInputException {
     var row = (inputUser - 1) / 3;
     var column = (inputUser - 1) % 3;
 
     if (grid[row][column] == '.') {
       grid[row][column] = player == Player.FIRST ? 'X' : 'O';
+    } else {
+      throw new TicTacToeInvalidInputException("La case est déjà prise");
     }
   }
 
@@ -50,5 +54,16 @@ public class TicTacToe {
     }
 
     return false;
+  }
+
+  public boolean checkDraw() {
+    for (char[] row : grid) {
+      for (char cell : row) {
+        if (cell == '.') {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 }
