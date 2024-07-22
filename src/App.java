@@ -16,9 +16,16 @@ public class App {
             final var inputUser = scanner.nextInt();
 
             game.processInput(player, inputUser);
+
             if (game.checkWin()) {
                 System.out.println(game);
                 System.out.println("Le joueur " + player + " a gagné !");
+                break;
+            }
+
+            if (game.checkDraw()) {
+                System.out.println(game);
+                System.out.println("Égalité !");
                 break;
             }
 

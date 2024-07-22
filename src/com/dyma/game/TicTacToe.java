@@ -51,4 +51,15 @@ public class TicTacToe {
 
     return false;
   }
+
+  public boolean checkDraw() {
+    for (char[] row : grid) {
+      for (char cell : row) {
+        if (cell == '.') {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 }
