@@ -31,4 +31,24 @@ public class TicTacToe {
       grid[row][column] = player == Player.FIRST ? 'X' : 'O';
     }
   }
+
+  public boolean checkWin() {
+    var checkDiagonal1 = grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2] && grid[0][0] != '.';
+    var checkDiagonal2 = grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0] && grid[0][2] != '.';
+
+    if (checkDiagonal1 || checkDiagonal2) {
+      return true;
+    }
+
+    for (int i = 0; i < 3; i++) {
+      var checkRow = grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2] && grid[i][0] != '.';
+      var checkColumn = grid[0][i] == grid[1][i] && grid[1][i] == grid[2][i] && grid[0][i] != '.';
+
+      if (checkRow || checkColumn) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }
